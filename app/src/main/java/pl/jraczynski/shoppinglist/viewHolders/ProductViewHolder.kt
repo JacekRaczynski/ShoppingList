@@ -16,6 +16,7 @@ class ProductViewHolder(binding: ProductRowBinding, private val view: View) : Vi
     val amountProduct = binding.amount
     val imageProduct = binding.image
     val categoryChip = binding.chip
+    val remove = binding.remove
 
 
     fun setChipForCategory(category: Categories?) {

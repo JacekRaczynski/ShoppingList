@@ -1,4 +1,14 @@
 <resources>
     <string name="app_name">ShoppingList</string>
     <string name="shopping_mode">Shopping mode</string>
+    <string name="sign_in">Sign in</string>
+    <string name="sign_up">Sign up</string>
+    <string name="password">Password</string>
+    <string name="repeat_password">Repeat password</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="email">Email</string>
+    <string name="dont_have_account_text">You can register!</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="information">On your shopping list you have /s positions</string>
 </resources>

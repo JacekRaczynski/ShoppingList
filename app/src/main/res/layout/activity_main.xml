@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".activities.MainActivity">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -12,36 +12,48 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/default_margin"
+        android:padding="@dimen/default_margin"
+        android:background="@color/tradewind"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/information"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hello World!"
-            app:layout_constraintEnd_toStartOf="@+id/scanProductButton"
-            app:layout_constraintStart_toEndOf="@+id/addProductButton"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_margin="@dimen/default_margin"
+            android:text="@string/information"
+            android:textColor="@color/dawnPink"
+            android:textSize="@dimen/subtitle_size"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />" />
 
         <Button
             android:id="@+id/addProductButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_margin"
             android:text="Add product"
+            android:textColor="@color/dawnPink"
+            android:background="@color/funGreen"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintTop_toBottomOf="@+id/information" />
 
         <Button
             android:id="@+id/scanProductButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_margin"
             android:text="Scan Product"
+            android:textColor="@color/dawnPink"
+            android:background="@color/funGreen"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintTop_toBottomOf="@+id/information" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -49,17 +61,24 @@
         android:id="@+id/shoppingModeSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
         android:text="@string/shopping_mode"
+        android:textColor="@color/almondFrost"
+        android:textColorHighlight="@color/funGreen"
         app:layout_constraintBottom_toTopOf="@+id/productListRecyclerView"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintRight_toRightOf="@id/productListRecyclerView"
-        app:layout_constraintTop_toBottomOf="@id/addSection" />
+        app:layout_constraintTop_toBottomOf="@+id/addSection" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/productListRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/default_margin"
+        android:layout_marginRight="@dimen/default_margin"
+        android:layout_marginLeft="@dimen/default_margin"
+        android:layout_marginTop="12dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.482"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/shoppingModeSwitch" />
 

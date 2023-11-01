@@ -5,6 +5,13 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
+
+    <color name="funGreen">#186049</color> <!-- Action // text -->
+    <color name="eden">#247158</color> <!--background-->
+    <color name="tradewind">#6AB29B</color> <!--information-->
+    <color name="dawnPink">#E4D5C7</color> <!--background-->
+    <color name="almondFrost">#95877A</color> <!--Text-->
+
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="blue">#8fd4fb</color>

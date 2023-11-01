@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/product_item_style"
+    android:layout_margin="@dimen/small_margin"
+    android:background="@color/dawnPink"
     android:clipToOutline="true">
 
     <ImageView
@@ -27,7 +28,8 @@
         android:background="@null"
         app:layout_constraintBottom_toBottomOf="@+id/image"
         app:layout_constraintEnd_toStartOf="@+id/remove"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/funGreen" />
 
     <com.google.android.material.chip.Chip
         android:id="@+id/chip"
@@ -44,6 +46,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/default_margin"
         android:text="TextView"
+        android:textColor="@color/almondFrost"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/image"
         app:layout_constraintStart_toEndOf="@+id/image"
@@ -55,6 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/default_margin"
         android:text="TextView"
+        android:textColor="@color/almondFrost"
         app:layout_constraintBottom_toBottomOf="@+id/image"
         app:layout_constraintStart_toEndOf="@+id/image"
         app:layout_constraintTop_toBottomOf="@+id/title" />
@@ -63,8 +67,8 @@
         android:id="@+id/remove"
         android:layout_width="80dp"
         android:layout_height="100dp"
-        android:background="@color/purple_500"
-        android:visibility="visible"
+        android:background="@color/funGreen"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -76,7 +80,8 @@
             android:padding="@dimen/large_margin"
             android:background="@null"
             android:layout_gravity="center"
-            app:srcCompat="@drawable/remove_icon" />
+            app:srcCompat="@drawable/remove_icon"
+            app:tint="@color/dawnPink" />
     </LinearLayout>
 
 
