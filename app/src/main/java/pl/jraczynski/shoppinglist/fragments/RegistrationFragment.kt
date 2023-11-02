@@ -1,4 +1,4 @@
-package pl.jraczynski.shoppinglist.register
+package pl.jraczynski.shoppinglist.fragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
-import pl.jraczynski.shoppinglist.R
 import pl.jraczynski.shoppinglist.activities.MainActivity
 import pl.jraczynski.shoppinglist.databinding.FragmentSignUpBinding
 

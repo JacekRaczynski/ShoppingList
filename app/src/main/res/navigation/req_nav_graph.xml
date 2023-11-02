@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="pl.jraczynski.shoppinglist.login.LoginFragment"
+        android:name="pl.jraczynski.shoppinglist.fragments.LoginFragment"
         android:label="Login" >
         <action
             android:id="@+id/action_loginFragment_to_registrationFragment"
@@ -14,6 +14,6 @@
     </fragment>
     <fragment
         android:id="@+id/registrationFragment"
-        android:name="pl.jraczynski.shoppinglist.register.RegistrationFragment"
+        android:name="pl.jraczynski.shoppinglist.fragments.RegistrationFragment"
         android:label="Registration" />
 </navigation>

@@ -5,82 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.MainActivity">
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/addSection"
+    <fragment
+        android:id="@+id/fragment_main"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/default_margin"
-        android:padding="@dimen/default_margin"
-        android:background="@color/tradewind"
+        android:layout_height="match_parent"
+        app:defaultNavHost="true"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:id="@+id/information"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/default_margin"
-            android:text="@string/information"
-            android:textColor="@color/dawnPink"
-            android:textSize="@dimen/subtitle_size"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />" />
-
-        <Button
-            android:id="@+id/addProductButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/default_margin"
-            android:text="Add product"
-            android:textColor="@color/dawnPink"
-            android:background="@color/funGreen"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/information" />
-
-        <Button
-            android:id="@+id/scanProductButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/default_margin"
-            android:text="Scan Product"
-            android:textColor="@color/dawnPink"
-            android:background="@color/funGreen"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/information" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <Switch
-        android:id="@+id/shoppingModeSwitch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:text="@string/shopping_mode"
-        android:textColor="@color/almondFrost"
-        android:textColorHighlight="@color/funGreen"
-        app:layout_constraintBottom_toTopOf="@+id/productListRecyclerView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintRight_toRightOf="@id/productListRecyclerView"
-        app:layout_constraintTop_toBottomOf="@+id/addSection" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/productListRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="@dimen/default_margin"
-        android:layout_marginLeft="@dimen/default_margin"
-        android:layout_marginTop="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.482"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/shoppingModeSwitch" />
-
-
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:navGraph="@navigation/main_nav_graph"
+        tools:layout="@layout/fragment_main"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

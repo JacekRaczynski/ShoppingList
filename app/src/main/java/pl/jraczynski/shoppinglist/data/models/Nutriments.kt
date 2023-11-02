@@ -1,0 +1,97 @@
+package pl.jraczynski.shoppinglist.data.models
+
+
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
+data class Nutriments(
+    @Json(name = "carbohydrates")
+    val carbohydrates: Double?,
+    @Json(name = "carbohydrates_100g")
+    val carbohydrates100g: Double?,
+    @Json(name = "carbohydrates_unit")
+    val carbohydratesUnit: String?,
+    @Json(name = "carbohydrates_value")
+    val carbohydratesValue: Double?,
+    @Json(name = "energy")
+    val energy: Int?,
+    @Json(name = "energy_100g")
+    val energy100g: Int?,
+    @Json(name = "energy-kcal")
+    val energyKcal: Int?,
+    @Json(name = "energy-kcal_100g")
+    val energyKcal100g: Int?,
+    @Json(name = "energy-kcal_unit")
+    val energyKcalUnit: String?,
+    @Json(name = "energy-kcal_value")
+    val energyKcalValue: Int?,
+    @Json(name = "energy-kcal_value_computed")
+    val energyKcalValueComputed: Double?,
+    @Json(name = "energy_unit")
+    val energyUnit: String?,
+    @Json(name = "energy_value")
+    val energyValue: Int?,
+    @Json(name = "fat")
+    val fat: Double?,
+    @Json(name = "fat_100g")
+    val fat100g: Double?,
+    @Json(name = "fat_unit")
+    val fatUnit: String?,
+    @Json(name = "fat_value")
+    val fatValue: Double?,
+    @Json(name = "fruits-vegetables-nuts-estimate-from-ingredients_100g")
+    val fruitsVegetablesNutsEstimateFromIngredients100g: Int?,
+    @Json(name = "fruits-vegetables-nuts-estimate-from-ingredients_serving")
+    val fruitsVegetablesNutsEstimateFromIngredientsServing: Int?,
+    @Json(name = "nova-group")
+    val novaGroup: Int?,
+    @Json(name = "nova-group_100g")
+    val novaGroup100g: Int?,
+    @Json(name = "nova-group_serving")
+    val novaGroupServing: Int?,
+    @Json(name = "nutrition-score-fr")
+    val nutritionScoreFr: Int?,
+    @Json(name = "nutrition-score-fr_100g")
+    val nutritionScoreFr100g: Int?,
+    @Json(name = "proteins")
+    val proteins: Double?,
+    @Json(name = "proteins_100g")
+    val proteins100g: Double?,
+    @Json(name = "proteins_unit")
+    val proteinsUnit: String?,
+    @Json(name = "proteins_value")
+    val proteinsValue: Double?,
+    @Json(name = "salt")
+    val salt: Double?,
+    @Json(name = "salt_100g")
+    val salt100g: Double?,
+    @Json(name = "salt_unit")
+    val saltUnit: String?,
+    @Json(name = "salt_value")
+    val saltValue: Double?,
+    @Json(name = "saturated-fat")
+    val saturatedFat: Double?,
+    @Json(name = "saturated-fat_100g")
+    val saturatedFat100g: Double?,
+    @Json(name = "saturated-fat_unit")
+    val saturatedFatUnit: String?,
+    @Json(name = "saturated-fat_value")
+    val saturatedFatValue: Double?,
+    @Json(name = "sodium")
+    val sodium: Double?,
+    @Json(name = "sodium_100g")
+    val sodium100g: Double?,
+    @Json(name = "sodium_unit")
+    val sodiumUnit: String?,
+    @Json(name = "sodium_value")
+    val sodiumValue: Double?,
+    @Json(name = "sugars")
+    val sugars: Double?,
+    @Json(name = "sugars_100g")
+    val sugars100g: Double?,
+    @Json(name = "sugars_unit")
+    val sugarsUnit: String?,
+    @Json(name = "sugars_value")
+    val sugarsValue: Double?
+)

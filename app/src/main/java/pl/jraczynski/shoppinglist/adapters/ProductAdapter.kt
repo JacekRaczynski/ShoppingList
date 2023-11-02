@@ -1,26 +1,16 @@
 package pl.jraczynski.shoppinglist.adapters
 
-import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.Switch
-import android.widget.ToggleButton
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.core.content.ContextCompat
-import androidx.core.view.forEach
-import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.Recycler
-import com.google.android.material.chip.Chip
-import pl.jraczynski.shoppinglist.R
 import pl.jraczynski.shoppinglist.data.Categories
-import pl.jraczynski.shoppinglist.data.Product
+import pl.jraczynski.shoppinglist.data.Item
 import pl.jraczynski.shoppinglist.databinding.ProductRowBinding
 
 import pl.jraczynski.shoppinglist.viewHolders.ProductViewHolder
 
-class ProductAdapter(private val products: List<Product>,private val view: Switch) :
+class ProductAdapter(private val products: List<Item>, private val view: Switch) :
     RecyclerView.Adapter<ProductViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         val inflater = LayoutInflater.from(parent.context)

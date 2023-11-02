@@ -2,7 +2,7 @@ package pl.jraczynski.shoppinglist.data
 
 import java.util.Date
 
-data class Product(
+data class Item(
     val id: String,
     val title: String,
     val amount: Int,
