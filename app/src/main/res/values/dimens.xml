@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <dimen name="width_image_dialog">170dp</dimen>
+    <dimen name="height_image_dialog">120dp</dimen>
+    <dimen name="height_dialog">270dp</dimen>
+    <dimen name="width_dialog">320dp</dimen>
     <dimen name="large_margin">30dp</dimen>
     <dimen name="default_margin">15dp</dimen>
     <dimen name="small_margin">5dp</dimen>

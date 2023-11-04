@@ -7,6 +7,9 @@
     <string name="repeat_password">Repeat password</string>
     <string name="forgot_password">Forgot password?</string>
     <string name="email">Email</string>
+    <string name="scan_code_title_dialog">Is it your barcode number?</string>
+    <string name="yes">yes</string>
+    <string name="no">no</string>
     <string name="dont_have_account_text">You can register!</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
