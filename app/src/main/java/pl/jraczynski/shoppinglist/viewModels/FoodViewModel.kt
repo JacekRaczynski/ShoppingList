@@ -21,6 +21,7 @@ class FoodViewModel(private val application: Application):AndroidViewModel(appli
     private val food = MutableLiveData<FoodProduct?>()
 
     fun performFetchSingleFoodProduct(id: Long) = viewModelScope.launch {
+        Log.d("PROCESS_D","Remote source")
         val remoteFoodProduct = repository.loadFoodProduct(id)
         Log.d("PROCESS_D","Remote source")
         if(remoteFoodProduct.isSuccessful){

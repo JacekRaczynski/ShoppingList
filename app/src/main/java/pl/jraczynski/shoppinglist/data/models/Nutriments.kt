@@ -41,9 +41,9 @@ data class Nutriments(
     @Json(name = "fat_value")
     val fatValue: Double?,
     @Json(name = "fruits-vegetables-nuts-estimate-from-ingredients_100g")
-    val fruitsVegetablesNutsEstimateFromIngredients100g: Int?,
+    val fruitsVegetablesNutsEstimateFromIngredients100g: Double?,
     @Json(name = "fruits-vegetables-nuts-estimate-from-ingredients_serving")
-    val fruitsVegetablesNutsEstimateFromIngredientsServing: Int?,
+    val fruitsVegetablesNutsEstimateFromIngredientsServing: Double?,
     @Json(name = "nova-group")
     val novaGroup: Int?,
     @Json(name = "nova-group_100g")

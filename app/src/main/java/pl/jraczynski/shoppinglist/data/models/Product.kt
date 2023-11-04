@@ -307,7 +307,7 @@ data class Product(
     @Json(name = "nutrition_score_warning_fruits_vegetables_nuts_estimate_from_ingredients")
     val nutritionScoreWarningFruitsVegetablesNutsEstimateFromIngredients: Int?,
     @Json(name = "nutrition_score_warning_fruits_vegetables_nuts_estimate_from_ingredients_value")
-    val nutritionScoreWarningFruitsVegetablesNutsEstimateFromIngredientsValue: Int?,
+    val nutritionScoreWarningFruitsVegetablesNutsEstimateFromIngredientsValue: Double?,
     @Json(name = "nutrition_score_warning_no_fiber")
     val nutritionScoreWarningNoFiber: Int?,
     @Json(name = "origin")

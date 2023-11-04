@@ -19,11 +19,11 @@ data class NutriscoreData(
     @Json(name = "fiber_value")
     val fiberValue: Int?,
     @Json(name = "fruits_vegetables_nuts_colza_walnut_olive_oils")
-    val fruitsVegetablesNutsColzaWalnutOliveOils: Int?,
+    val fruitsVegetablesNutsColzaWalnutOliveOils: Double?,
     @Json(name = "fruits_vegetables_nuts_colza_walnut_olive_oils_points")
-    val fruitsVegetablesNutsColzaWalnutOliveOilsPoints: Int?,
+    val fruitsVegetablesNutsColzaWalnutOliveOilsPoints: Double?,
     @Json(name = "fruits_vegetables_nuts_colza_walnut_olive_oils_value")
-    val fruitsVegetablesNutsColzaWalnutOliveOilsValue: Int?,
+    val fruitsVegetablesNutsColzaWalnutOliveOilsValue: Double?,
     @Json(name = "grade")
     val grade: String?,
     @Json(name = "is_beverage")
