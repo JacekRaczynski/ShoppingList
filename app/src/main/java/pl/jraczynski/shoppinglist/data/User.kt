@@ -6,5 +6,5 @@ data class User(
     val name: String? = null,
     val team: Team? =null,
     val uid: String? = null,
-    val listofProducts: Object? = null
+    val listofProducts: ShoppingList? = null
 )

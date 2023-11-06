@@ -23,10 +23,10 @@ class ProductAdapter(private val products: List<Item>, private val view: Switch)
     }
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
-        holder.titleProduct.text = products[position].title
+        holder.titleProduct.text = products[position].name
         holder.amountProduct.text = products[position].amount.toString()
-        products[position].category?.let{ it ->
-            holder.setChipForCategory(Categories.byCategoryNameOrNull(it))}
+        products[position].categories?.let{ it ->
+            holder.setChipForCategory(Categories.byCategoryNameOrNull(it.get(0).name))} //TODO
       //  holder.itemView = products[position].category
     }
 }

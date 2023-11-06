@@ -31,7 +31,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/default_margin"
-        android:text="Miachł"
         app:layout_constraintStart_toEndOf="@+id/nameTitle"
         app:layout_constraintTop_toBottomOf="@+id/imageProfile" />
 
@@ -49,13 +48,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/default_margin"
-        android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/emailTitle"
         app:layout_constraintTop_toBottomOf="@+id/nameProfile" />
 
+    <TextView
+        android:id="@+id/noTeamInformation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        android:text="@string/no_team_information"
+        android:textSize="@dimen/title_size"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nameTitle" />
+
     <androidx.cardview.widget.CardView
-        android:layout_width="260dp"
+        android:id="@+id/teamCard"
+        android:layout_width="280dp"
         android:layout_height="260dp"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -65,20 +78,21 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
         <TextView
+            android:id="@+id/teamName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Team name"
             android:textSize="@dimen/title_size"
             android:textColor="@color/almondFrost">
         </TextView>
-        <TextView
-            android:id="@+id/teamMembers"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Team asdasdasda"
-            android:textSize="@dimen/title_size"
-            android:textColor="@color/almondFrost">
-        </TextView>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/membersListRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/eden">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

@@ -49,165 +49,32 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavigation.setOnItemSelectedListener(NavigationBarView.OnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.mainFragment -> {
-                    if(navController.currentDestination?.id != R.id.mainFragment) {
-                        navController.navigate( R.id.mainFragment)
+                    if (navController.currentDestination?.id != R.id.mainFragment) {
+                        navController.navigate(R.id.mainFragment)
                     }
                     return@OnItemSelectedListener true
                 }
-
-
                 R.id.profileFragment -> {
                     if (navController.currentDestination?.id != R.id.profileFragment) {
-                        navController.navigate( R.id.profileFragment)
+                        navController.navigate(R.id.profileFragment)
                     }
                     return@OnItemSelectedListener true
                 }
                 R.id.iconScanFragment -> {
-                     if(navController.currentDestination?.id == R.id.mainFragment){
-                         navHostFragment?.let { navFragment ->
-                             navFragment.childFragmentManager.primaryNavigationFragment?.let {fragment->
-                                 (fragment as BaseFragment).cameraPermissionRequest()
-                             }
-
-                     }
-                     }
+                    navHostFragment?.let { navFragment ->
+                        navFragment.childFragmentManager.primaryNavigationFragment?.let { fragment ->
+                            (fragment as BaseFragment).cameraPermissionRequest()
+                        }
+                    }
                     return@OnItemSelectedListener true
                 }
 
-                else -> {      return@OnItemSelectedListener true}
+                else -> {
+                    return@OnItemSelectedListener true
+                }
             }
         }
-        )}
-
-    fun temporaryListOfProducts() : List<Item>{
-        val products = ArrayList<Item>()
-        products.add(Item(
-            id = "12312",
-            title = "Ser",
-            amount = 2,
-            image = "PL.jpg",
-            category = Categories.home_garden.toString(),
-            authorId = "1231",
-            date = Date()
-
-        ))
-                products.add(Item(
-            id = "1233",
-            title = "Szynka",
-            amount = 3,
-            image = "PL.jpg",
-            category = Categories.health_beauty.toString(),
-            authorId = "1231",
-            date = Date()
-
         )
-
-        )
-        products.add(Item(
-            id = "12312",
-            title = "Ser",
-            amount = 2,
-            image = "PL.jpg",
-            category = Categories.food.toString(),
-            authorId = "1231",
-            date = Date()
-
-        ))
-        products.add(Item(
-            id = "1233",
-            title = "Szynka",
-            amount = 3,
-            image = "PL.jpg",
-            category = Categories.sporting_goods.toString(),
-            authorId = "1231",
-            date = Date()
-
-        )
-
-        )
-        products.add(Item(
-            id = "12312",
-            title = "Ser",
-            amount = 2,
-            image = "PL.jpg",
-            category = Categories.food.toString(),
-            authorId = "1231",
-            date = Date()
-
-        ))
-        products.add(Item(
-            id = "1233",
-            title = "Szynka",
-            amount = 3,
-            image = "PL.jpg",
-            category = "Spożywcze",
-            authorId = "1231",
-            date = Date()
-
-        )
-
-        )
-
-        products.add(Item(
-            id = "1233",
-            title = "Szynka",
-            amount = 3,
-            image = "PL.jpg",
-            category = "Spożywcze",
-            authorId = "1231",
-            date = Date()
-
-        )
-
-        )
-        products.add(Item(
-            id = "1233",
-            title = "Szynka",
-            amount = 3,
-            image = "PL.jpg",
-            category = "Spożywcze",
-            authorId = "1231",
-            date = Date()
-
-        )
-
-        )
-        products.add(Item(
-            id = "1233",
-            title = "Szynka",
-            amount = 3,
-            image = "PL.jpg",
-            category = "Spożywcze",
-            authorId = "1231",
-            date = Date()
-
-        )
-
-        )
-        products.add(Item(
-            id = "12312",
-            title = "Ser",
-            amount = 2,
-            image = "PL.jpg",
-            category = "Spożywcze",
-            authorId = "1231",
-            date = Date()
-
-        ))
-        products.add(Item(
-            id = "1233",
-            title = "Szynka",
-            amount = 3,
-            image = "PL.jpg",
-            category = "Spożywcze",
-            authorId = "1231",
-            date = Date()
-
-        )
-
-        )
-        return products
-
     }
 
 }

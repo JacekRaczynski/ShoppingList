@@ -28,7 +28,7 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/addProductButton"
@@ -64,22 +64,58 @@
         android:text="@string/shopping_mode"
         android:textColor="@color/almondFrost"
         android:textColorHighlight="@color/funGreen"
-        app:layout_constraintBottom_toTopOf="@+id/productListRecyclerView"
+        app:layout_constraintBottom_toTopOf="@+id/privateListText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintRight_toRightOf="@id/productListRecyclerView"
+        app:layout_constraintRight_toRightOf="@id/privateProductListRecyclerView"
         app:layout_constraintTop_toBottomOf="@+id/addSection" />
 
+    <TextView
+        android:id="@+id/privateListText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        android:text="@string/private_list"
+        android:textColor="@color/dawnPink"
+        android:textSize="@dimen/subtitle_size"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shoppingModeSwitch" />
+
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/productListRecyclerView"
+        android:id="@+id/privateProductListRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="@dimen/default_margin"
         android:layout_marginLeft="@dimen/default_margin"
-        android:layout_marginTop="12dp"
+        android:layout_marginRight="@dimen/default_margin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.482"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/shoppingModeSwitch" />
+        app:layout_constraintTop_toBottomOf="@+id/privateListText" />
+
+    <TextView
+        android:id="@+id/teamListText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        android:text="@string/team_list"
+        android:textColor="@color/dawnPink"
+        android:textSize="@dimen/subtitle_size"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/privateProductListRecyclerView" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/teamProductListRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/default_margin"
+        android:layout_marginRight="@dimen/default_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.482"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/teamListText" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

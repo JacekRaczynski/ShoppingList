@@ -1,28 +1,23 @@
 package pl.jraczynski.shoppinglist.fragments
 
-import android.Manifest
-import android.app.AlertDialog
-import android.hardware.usb.UsbRequest
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import android.widget.CompoundButton
+import android.widget.LinearLayout
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.journeyapps.barcodescanner.ScanContract
-import com.journeyapps.barcodescanner.ScanOptions
-import pl.jraczynski.shoppinglist.CaptureAct
+
 import pl.jraczynski.shoppinglist.R
-import pl.jraczynski.shoppinglist.activities.MainActivity
 import pl.jraczynski.shoppinglist.adapters.ProductAdapter
+import pl.jraczynski.shoppinglist.data.Item
 import pl.jraczynski.shoppinglist.databinding.FragmentMainBinding
 import pl.jraczynski.shoppinglist.viewModels.ProductViewModel
 import pl.jraczynski.shoppinglist.viewModels.UserViewModel
-import java.util.*
 
 
 class MainFragment : BaseFragment() {
@@ -49,11 +44,31 @@ class MainFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val adapter = ProductAdapter((activity as MainActivity).temporaryListOfProducts(),binding.shoppingModeSwitch)
-        binding.productListRecyclerView.layoutManager = LinearLayoutManager(context)
-        binding.productListRecyclerView.adapter = adapter
-        setupAddProduct()
+        var userItemList : List<Item> = listOf()
+        var teamItemList : List<Item> = listOf()
         userViewModel.user.observe(viewLifecycleOwner) { user ->
+            user.listofProducts?.list?.let {
+                userItemList = it
+                val adapter = ProductAdapter(it, binding.shoppingModeSwitch)
+                binding.privateProductListRecyclerView.layoutManager = LinearLayoutManager(context)
+                binding.privateProductListRecyclerView.adapter = adapter
+                setupShoppingMode(userItemList,teamItemList)
+            }
+            user.team?.listofProducts?.list?.let {
+                teamItemList = it
+                val adapter = ProductAdapter(it, binding.shoppingModeSwitch)
+                binding.teamProductListRecyclerView.layoutManager = LinearLayoutManager(context)
+                binding.teamProductListRecyclerView.adapter = adapter
+                setupShoppingMode(userItemList,teamItemList)
+
+            }
+        }
+
+        setupShoppingMode(userItemList,teamItemList)
+        setupAddProduct()
+
+        userViewModel.user.observe(viewLifecycleOwner) { user ->
+            Log.d("DDDDDDDDDDDDDDDDDDDDDD11111DDDDDD", user.toString())
        }
     }
 
@@ -62,7 +77,33 @@ class MainFragment : BaseFragment() {
             cameraPermissionRequest()
         }
 
-    }
 
+    }
+    fun setupShoppingMode(privateItemList: List<Item>,teamItemList: List<Item>) {
+        binding.shoppingModeSwitch.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
+            privateItemList?.forEach {
+                val position = privateItemList.indexOf(it)
+                val viewHolder = binding.privateProductListRecyclerView.findViewHolderForAdapterPosition(position)
+                val itemLayout = viewHolder?.itemView?.findViewById<LinearLayout>(R.id.remove)
+                if (isChecked) {
+                    itemLayout?.visibility = View.VISIBLE
+
+                } else {
+                    itemLayout?.visibility = View.GONE
+                }
+            }
+            teamItemList?.forEach {
+                val position = teamItemList.indexOf(it)
+                val viewHolder = binding.teamProductListRecyclerView.findViewHolderForAdapterPosition(position)
+                val itemLayout = viewHolder?.itemView?.findViewById<LinearLayout>(R.id.remove)
+                if (isChecked) {
+                    itemLayout?.visibility = View.VISIBLE
+
+                } else {
+                    itemLayout?.visibility = View.GONE
+                }
+            }
+        })
+    }
 
 }

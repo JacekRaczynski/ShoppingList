@@ -4,17 +4,14 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.DocumentSnapshot
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.getField
+import com.google.firebase.firestore.*
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
-import pl.jraczynski.shoppinglist.data.Team
-import pl.jraczynski.shoppinglist.data.User
+import pl.jraczynski.shoppinglist.data.*
 
 class FirebaseRepository {
     private val TAG = "FIREBASE_REPO"
@@ -32,45 +29,90 @@ class FirebaseRepository {
             .document(uid!!)
             .get()
             .addOnSuccessListener {it->
-                scope.launch {
-                    val user = User(
-                        name = it.getField("name"),
-                        email = it.getField("email"),
-                        team =  getDocumentReference(it,"team",Team::class.java)
-
-                        //team =
-                        /*  Team( FirebaseFirestore.getInstance().document()
-
-                        it.getDocumentReference("team").get()
-                )*/
-                    )
-                    cloudResult.postValue(user!!)
-                    Log.d("DDDDDDDDDDDDDDDDDDD", user.toString())
+                if(it.data != null) {
+                    scope.launch {
+                        val shoppingList: ShoppingListDB? = getDocumentReference(it,"listofProducts",ShoppingListDB::class.java)
+                        val team: TeamDB? = getDocumentReference(it,"team",TeamDB::class.java)
+                        val teamShoppingList = team?.listofProducts?.get()?.await()?.toObject(ShoppingListDB::class.java)
+                        val user = User(
+                            name = it.getField("name"),
+                            email = it.getField("email"),
+                            team =  Team(
+                                uid = team?.uid,
+                                name = team?.name,
+                                admin = team?.admin,
+                                members = team?.members,
+                                listofProducts =ShoppingList(
+                                    uid = teamShoppingList?.uid,
+                                    list = teamShoppingList?.let { it1 -> getItemList(it1) }
+                            )),
+                            listofProducts = ShoppingList(
+                                uid = shoppingList?.uid,
+                                list = shoppingList?.let { it1 -> getItemList(it1) }
+                        ))
+                        cloudResult.postValue(user!!)
+                    }
                 }
-                //     Log.d("DDDDDDDDDDDDDDDDDDD", it.toString())
-
-//                val res: Team? = getDocumentReference(it,"team",Team::class.java)
-//                scope.launch {
-//                    Log.d("DDDDDDDDDDDDDDDDDDD",
-//                        it.getDocumentReference("team")?.get()?.await()?.toObject(Team::class.java)?.members?.get(0).toString() )
-//                    it.getDocumentReference("team")?.get()?.await()?.toObject(Team::class.java)
-//                }
-//                scope.launch {
-//            val res =      getDocumentReference(it,"team",Team::class.java)
-//                }
-
-                // it.toObject(User::class.java)
-                //= it.toObject(User::class.java)
-
             }
             .addOnFailureListener {
                 Log.d(TAG, it.message.toString())
             }
         return cloudResult
     }
+    fun  getMembers(membersId: List<String>): LiveData<MutableList<Pair<String,String>>> {
+        val cloudResult = MutableLiveData<MutableList<Pair<String, String>>>()
+        val list: MutableList<Pair<String, String>> = mutableListOf()
 
-    suspend  fun  <T> getDocumentReference(document: DocumentSnapshot, objectName: String, classType: Class<T>): T{
-        return document.getDocumentReference(objectName)?.get()?.await()?.toObject(classType)!!
+        val scope =
+            CoroutineScope(Dispatchers.Main + Job())
+        membersId.forEach { id ->
+            cloud.collection("users")
+                .document(id!!)
+                .get()
+                .addOnSuccessListener { it ->
+                    if (it.data != null) {
+                            val pair: Pair<String, String> = Pair(id!!, it.getField("name")!!)
+                            list.add(pair)
+                        cloudResult.postValue(list)
+                    }
+                }
+                .addOnFailureListener {
+                    Log.d(TAG, it.message.toString())
+                }
+        }
+        return cloudResult
     }
 
+    suspend  fun  <T> getDocumentReference(document: DocumentSnapshot, objectName: String, classType: Class<T>): T? {
+        if(document == null) return  null
+        return document.getDocumentReference(objectName)?.get()?.await()?.toObject(classType)!!
+    }
+suspend  fun getItemList(shoppingList: ShoppingListDB): MutableList<Item> {
+    val itemList: MutableList<Item> = mutableListOf()
+    if(shoppingList != null) {
+        (shoppingList?.products as ArrayList<DocumentReference>).forEach { docuReference ->
+            val data: ProductDB? = docuReference.get().await().toObject(ProductDB::class.java)
+            val categories: MutableList<Categories> = mutableListOf()
+            (data?.categories as ArrayList<DocumentReference>).forEach{cat ->
+                val category: CategoriesDB? = cat.get().await().toObject(CategoriesDB::class.java)
+                if (category?.name != null) {
+                    categories.add(Categories.valueOf(category.name!!))
+                }
+            }
+            itemList.add(
+                Item(
+                    uid = data?.uid,
+                    name = data?.name,
+                    image = data?.image,
+                    productData = data?.productData,
+                    date = data?.date.toString(),
+                    categories = categories,
+                    amount = data.amount,
+                    authorId = data.author
+                )
+            )
+        }
+    }
+    return itemList
+}
 }

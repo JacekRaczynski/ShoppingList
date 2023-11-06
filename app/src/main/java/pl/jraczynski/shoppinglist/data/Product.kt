@@ -7,8 +7,9 @@ data class Product(
     val uid: String? = null,
     val name: String? = null,
     val image: String? = null,
+    val product: Product? = null,
     val date: Date? = null,
-    val categories: Categories? = null,
+    val categories: List<Categories>? = null,
     val author: User? = null,
     val amount: Int? = null
 )
