@@ -31,6 +31,7 @@ class FirebaseRepository {
             .addOnSuccessListener {it->
                 if(it.data != null) {
                     scope.launch {
+                       // it.get("listofProducts")?.get()?.await()?
                         val shoppingList: ShoppingListDB? = getDocumentReference(it,"listofProducts",ShoppingListDB::class.java)
                         val team: TeamDB? = getDocumentReference(it,"team",TeamDB::class.java)
                         val teamShoppingList = team?.listofProducts?.get()?.await()?.toObject(ShoppingListDB::class.java)
@@ -105,7 +106,7 @@ suspend  fun getItemList(shoppingList: ShoppingListDB): MutableList<Item> {
                     name = data?.name,
                     image = data?.image,
                     productData = data?.productData,
-                    date = data?.date.toString(),
+                    date = data?.date,
                     categories = categories,
                     amount = data.amount,
                     authorId = data.author
@@ -129,14 +130,29 @@ suspend  fun getItemList(shoppingList: ShoppingListDB): MutableList<Item> {
                 }
         }
     }
-    fun addItem(item:Item){
+    fun updateItemListForUser(item:Item, user: User){
+        item!!.uid?.let {
+            cloud.collection("lists")
+                .document(user.listofProducts?.uid!!)
+                .update("products",FieldValue.arrayUnion(
+                    cloud.collection("products").document(item.uid!!)
+                ))
+                .addOnSuccessListener { it ->
+                    Log.d(TAG, "Zwiększono liczbę" + it.toString())
+                }
+                .addOnFailureListener {
+                    Log.d(TAG, it.message.toString())
+                }
+        }
+    }
+    fun addItem(item:Item,user: User){
         item!!.uid?.let {
             cloud.collection("products")
                 .document(item.uid!!)
                 .set(item)
                 // .get()
                 .addOnSuccessListener { it ->
-                    Log.d(TAG, "Zwiększono liczbę" + it.toString())
+                  updateItemListForUser(item,user)
                 }
                 .addOnFailureListener {
                     Log.d(TAG, it.message.toString())
