@@ -43,7 +43,7 @@ class AddItemFragment : BaseFragment() {
                     binding.amount.text = (Integer.parseInt( binding.amount.text.toString()) + 1).toString()
             }
             binding.nameItem.text = item.name
-            binding.dateItem.text = item.date
+            binding.dateItem.text = item.date.toString()
                  var categories :String = ""
                  item.categories?.forEach {category ->  categories = categories + " " + category.name }
             binding.categoriesItem.text = categories

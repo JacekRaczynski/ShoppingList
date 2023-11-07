@@ -13,10 +13,13 @@ import pl.jraczynski.shoppinglist.viewHolders.ProductViewHolder
 class ProductAdapter(private val products: ArrayList<Item>) :
     RecyclerView.Adapter<ProductViewHolder>() {
 
-    fun setProducts(list: List<Item>) {
-        products.clear()
-        products.addAll(list)
+    fun setProducts() {
+
         notifyDataSetChanged()
+    }
+
+    override fun onViewRecycled(holder: ProductViewHolder) {
+        super.onViewRecycled(holder)
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -32,6 +35,7 @@ class ProductAdapter(private val products: ArrayList<Item>) :
         holder.titleProduct.text = products[position].name
         holder.amountProduct.text = products[position].amount.toString()
         products[position].categories?.let{ it ->
+            if(it.size>0)
             holder.setChipForCategory(Categories.byCategoryNameOrNull(it.get(0).name))} //TODO
       //  holder.itemView = products[position].category
     }

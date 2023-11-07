@@ -2,7 +2,6 @@ package pl.jraczynski.shoppinglist.fragments
 
 import android.Manifest
 import android.app.AlertDialog
-import android.content.ClipData.Item
 
 import android.util.Log
 
@@ -14,6 +13,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.core.content.PermissionChecker
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
+import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.journeyapps.barcodescanner.ScanContract
 import com.journeyapps.barcodescanner.ScanOptions
@@ -23,7 +23,6 @@ import pl.jraczynski.shoppinglist.activities.MainActivity
 import pl.jraczynski.shoppinglist.data.Categories
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
-import java.util.Date
 
 abstract class BaseFragment : Fragment() {
     val CAMERA_PERMISSION_REQUEST_CODE: Int = 3;
@@ -100,11 +99,15 @@ abstract class BaseFragment : Fragment() {
                                             productData = it.toString(),
                                             amount = 1,
                                             image ="",
-                                            categories = listOf( Categories.food),
+                                           // categories = listOf( Categories.food),
                                             authorId = fbAuth.currentUser?.uid,
-                                            date = formattedDate
+                                            date = Timestamp.now()
                                         )
-                                    (activity as MainActivity).foodViewModel.addItem(item)
+                                    (activity as MainActivity).userViewModel.user.value?.let { it1 ->
+                                        (activity as MainActivity).foodViewModel.addItem(item,
+                                            it1
+                                        )
+                                    }
                                     Log.d("PROCESS_D", it.toString())
                                 }
                             }

@@ -1,6 +1,6 @@
 package pl.jraczynski.shoppinglist.data
 
-import pl.jraczynski.shoppinglist.data.models.Product
+import com.google.firebase.Timestamp
 import java.util.Date
 
 data class Item(
@@ -11,5 +11,5 @@ data class Item(
     val image: String? = null,
     val categories: List<Categories>? = null,
     val authorId: String? = null,
-    val date: String?
+    val date: Timestamp?= null,
 ) :java.io.Serializable

@@ -34,34 +34,38 @@ class RegistrationActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        val googleCredential = oneTapClient.getSignInCredentialFromIntent(data)
-        val idToken = googleCredential.googleIdToken
-        when {
-            idToken != null -> {
-                // Got an ID token from Google. Use it to authenticate
-                // with Firebase.
-                val firebaseCredential = GoogleAuthProvider.getCredential(idToken, null)
-                auth.signInWithCredential(firebaseCredential)
-                    .addOnCompleteListener(this) { task ->
-                        if (task.isSuccessful) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithCredential:success")
-                            val user = auth.currentUser
-                            val intent = Intent(applicationContext, MainActivity::class.java).apply{
-                                flags = (Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        if(resultCode != RESULT_CANCELED) {
+            val googleCredential = oneTapClient.getSignInCredentialFromIntent(data)
+            val idToken = googleCredential.googleIdToken
+            when {
+                idToken != null -> {
+                    // Got an ID token from Google. Use it to authenticate
+                    // with Firebase.
+                    val firebaseCredential = GoogleAuthProvider.getCredential(idToken, null)
+                    auth.signInWithCredential(firebaseCredential)
+                        .addOnCompleteListener(this) { task ->
+                            if (task.isSuccessful) {
+                                // Sign in success, update UI with the signed-in user's information
+                                Log.d(TAG, "signInWithCredential:success")
+                                val user = auth.currentUser
+                                val intent =
+                                    Intent(applicationContext, MainActivity::class.java).apply {
+                                        flags =
+                                            (Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                                    }
+                                startActivity(intent)
+
+                            } else {
+                                // If sign in fails, display a message to the user.
+                                Log.w(TAG, "signInWithCredential:failure", task.exception)
+
                             }
-                            startActivity(intent)
-
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithCredential:failure", task.exception)
-
                         }
-                    }
-            }
-            else -> {
-                // Shouldn't happen.
-                Log.d(TAG, "No ID token!")
+                }
+                else -> {
+                    // Shouldn't happen.
+                    Log.d(TAG, "No ID token!")
+                }
             }
         }
     }

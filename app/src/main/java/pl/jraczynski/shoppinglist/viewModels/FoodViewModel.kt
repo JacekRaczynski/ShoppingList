@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import pl.jraczynski.shoppinglist.data.Item
+import pl.jraczynski.shoppinglist.data.User
 import pl.jraczynski.shoppinglist.data.models.FoodProduct
 import pl.jraczynski.shoppinglist.repositories.FirebaseRepository
 import pl.jraczynski.shoppinglist.repositories.Repository
@@ -44,8 +45,8 @@ class FoodViewModel(private val application: Application):AndroidViewModel(appli
      fun getFoodProduct(): LiveData<FoodProduct?>{
         return food
     }
-    fun addItem(item:Item){
-        firebaseRepository.addItem(item)
+    fun addItem(item:Item, user: User){
+        firebaseRepository.addItem(item,user)
     }
 
     }
