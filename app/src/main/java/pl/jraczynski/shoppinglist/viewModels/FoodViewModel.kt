@@ -11,11 +11,14 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import pl.jraczynski.shoppinglist.data.Item
 import pl.jraczynski.shoppinglist.data.models.FoodProduct
+import pl.jraczynski.shoppinglist.repositories.FirebaseRepository
 import pl.jraczynski.shoppinglist.repositories.Repository
 
 class FoodViewModel(private val application: Application):AndroidViewModel(application) {
     private val repository = Repository(application)
+    private val firebaseRepository = FirebaseRepository()
     private val _foodProduct = MutableStateFlow<FoodProduct?>(null)
     val foodProduct = _foodProduct.asStateFlow()
     private val food = MutableLiveData<FoodProduct?>()
@@ -35,9 +38,14 @@ class FoodViewModel(private val application: Application):AndroidViewModel(appli
 
             }
         }
-
+    fun updateItemAmount(item: Item, int: Int){
+        firebaseRepository.updateItemAmount(item,int)
+    }
      fun getFoodProduct(): LiveData<FoodProduct?>{
         return food
+    }
+    fun addItem(item:Item){
+        firebaseRepository.addItem(item)
     }
 
     }

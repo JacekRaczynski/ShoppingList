@@ -12,8 +12,7 @@ data class Agribalyse(
     val agribalyseProxyFoodCode: String?,
     @Json(name = "co2_agriculture")
     val co2Agriculture: Double?,
-    @Json(name = "co2_consumption")
-    val co2Consumption: Int?,
+
     @Json(name = "co2_distribution")
     val co2Distribution: Double?,
     @Json(name = "co2_packaging")
@@ -30,8 +29,7 @@ data class Agribalyse(
     val dqr: String?,
     @Json(name = "ef_agriculture")
     val efAgriculture: Double?,
-    @Json(name = "ef_consumption")
-    val efConsumption: Int?,
+
     @Json(name = "ef_distribution")
     val efDistribution: Double?,
     @Json(name = "ef_packaging")

@@ -30,8 +30,7 @@ data class AgribalyseX(
     val dqr: String?,
     @Json(name = "ef_agriculture")
     val efAgriculture: Double?,
-    @Json(name = "ef_consumption")
-    val efConsumption: Int?,
+
     @Json(name = "ef_distribution")
     val efDistribution: Double?,
     @Json(name = "ef_packaging")

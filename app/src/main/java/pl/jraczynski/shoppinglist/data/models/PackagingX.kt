@@ -9,7 +9,7 @@ data class PackagingX(
     @Json(name = "ecoscore_material_score")
     val ecoscoreMaterialScore: Int?,
     @Json(name = "ecoscore_shape_ratio")
-    val ecoscoreShapeRatio: Int?,
+    val ecoscoreShapeRatio: Double?,
     @Json(name = "material")
     val material: String?,
     @Json(name = "shape")

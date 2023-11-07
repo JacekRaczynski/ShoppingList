@@ -4,7 +4,8 @@
 
     <item
         app:showAsAction="ifRoom"
-        android:icon="@drawable/ic_launcher_background"
+        android:icon="@drawable/logout_icon"
         android:id="@+id/logout_action"
+        android:iconTint="@color/dawnPink"
         android:title="Logout" />
 </menu>

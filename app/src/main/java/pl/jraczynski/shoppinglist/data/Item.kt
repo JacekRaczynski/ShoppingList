@@ -12,4 +12,4 @@ data class Item(
     val categories: List<Categories>? = null,
     val authorId: String? = null,
     val date: String?
-)
+) :java.io.Serializable

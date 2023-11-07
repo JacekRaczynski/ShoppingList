@@ -10,8 +10,14 @@ import pl.jraczynski.shoppinglist.databinding.ProductRowBinding
 
 import pl.jraczynski.shoppinglist.viewHolders.ProductViewHolder
 
-class ProductAdapter(private val products: List<Item>, private val view: Switch) :
+class ProductAdapter(private val products: ArrayList<Item>) :
     RecyclerView.Adapter<ProductViewHolder>() {
+
+    fun setProducts(list: List<Item>) {
+        products.clear()
+        products.addAll(list)
+        notifyDataSetChanged()
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val productRowBinding = ProductRowBinding.inflate(inflater, parent, false)

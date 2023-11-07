@@ -12,6 +12,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 
 import pl.jraczynski.shoppinglist.activities.MainActivity
+import pl.jraczynski.shoppinglist.activities.RegistrationActivity
 import pl.jraczynski.shoppinglist.databinding.FragmentSignInBinding
 
 
@@ -32,6 +33,9 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupLoginButton()
         setupRegistrationButton()
+        binding.signInGoogleButton.setOnClickListener {
+            (activity as RegistrationActivity).signIn()
+        }
     }
 
     private fun setupLoginButton() {

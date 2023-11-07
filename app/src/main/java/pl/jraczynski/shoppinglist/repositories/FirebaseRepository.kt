@@ -115,4 +115,36 @@ suspend  fun getItemList(shoppingList: ShoppingListDB): MutableList<Item> {
     }
     return itemList
 }
+    fun updateItemAmount(item:Item, amount: Int){
+        item!!.uid?.let {
+            cloud.collection("products")
+                .document(it)
+               // .get()
+                .update("amount", amount)
+                .addOnSuccessListener { it ->
+                    Log.d(TAG, "Zwiększono liczbę" + it.toString())
+                }
+                .addOnFailureListener {
+                    Log.d(TAG, it.message.toString())
+                }
+        }
+    }
+    fun addItem(item:Item){
+        item!!.uid?.let {
+            cloud.collection("products")
+                .document(item.uid!!)
+                .set(item)
+                // .get()
+                .addOnSuccessListener { it ->
+                    Log.d(TAG, "Zwiększono liczbę" + it.toString())
+                }
+                .addOnFailureListener {
+                    Log.d(TAG, it.message.toString())
+                }
+        }
+    }
+    /*
+    fun addItem(item: Item){
+        cloud.collection("products").
+    }*/
 }

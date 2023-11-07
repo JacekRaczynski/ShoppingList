@@ -2,27 +2,39 @@ package pl.jraczynski.shoppinglist.fragments
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.viewModels
+import android.view.*
+
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.auth.FirebaseAuth
 import pl.jraczynski.shoppinglist.R
 import pl.jraczynski.shoppinglist.activities.MainActivity
-import pl.jraczynski.shoppinglist.adapters.ProductAdapter
+
 import pl.jraczynski.shoppinglist.adapters.TeamAdapter
-import pl.jraczynski.shoppinglist.databinding.FragmentMainBinding
 import pl.jraczynski.shoppinglist.databinding.FragmentProfileBinding
-import pl.jraczynski.shoppinglist.viewModels.UserViewModel
 
 class ProfileFragment : BaseFragment() {
     private lateinit var binding: FragmentProfileBinding
-    private val userViewModel by viewModels<UserViewModel>()
+    private val fbAuth = FirebaseAuth.getInstance()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        setHasOptionsMenu(true)
     }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.logout_menu,menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.logout_action -> {
+                fbAuth.signOut()
+                requireActivity().finish()
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,7 +47,7 @@ class ProfileFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        userViewModel.user.observe(viewLifecycleOwner) { user ->
+        (activity as MainActivity).userViewModel.user.observe(viewLifecycleOwner) { user ->
             binding.nameProfile.text =  user.name
             binding.emailProfile.text = user.email
             if(user.team != null ){
@@ -43,7 +55,7 @@ class ProfileFragment : BaseFragment() {
                 binding.noTeamInformation.visibility = View.GONE
                 binding.teamName.text = user.team.name
                 if(user.team.members?.isNotEmpty() == true) {
-                    userViewModel.getMembers(user.team.members!!).observe(viewLifecycleOwner){
+                    (activity as MainActivity).userViewModel.getMembers(user.team.members!!).observe(viewLifecycleOwner){
                         it.forEach {
                             Log.d("XXXXXXXX", it.first + " " + it.second)
                         }

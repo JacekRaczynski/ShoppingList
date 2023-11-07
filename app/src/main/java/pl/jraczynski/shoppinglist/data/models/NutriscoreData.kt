@@ -13,11 +13,11 @@ data class NutriscoreData(
     @Json(name = "energy_value")
     val energyValue: Int?,
     @Json(name = "fiber")
-    val fiber: Int?,
+    val fiber: Double?,
     @Json(name = "fiber_points")
     val fiberPoints: Int?,
     @Json(name = "fiber_value")
-    val fiberValue: Int?,
+    val fiberValue: Double?,
     @Json(name = "fruits_vegetables_nuts_colza_walnut_olive_oils")
     val fruitsVegetablesNutsColzaWalnutOliveOils: Double?,
     @Json(name = "fruits_vegetables_nuts_colza_walnut_olive_oils_points")

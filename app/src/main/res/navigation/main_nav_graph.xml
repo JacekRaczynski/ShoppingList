@@ -12,6 +12,9 @@
         <action
             android:id="@+id/action_mainFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_addItemFragment"
+            app:destination="@id/addItemFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -21,6 +24,16 @@
             android:id="@+id/action_profileFragment_to_mainFragment2"
             app:destination="@id/mainFragment"
             app:launchSingleTop="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/addItemFragment"
+        android:name="pl.jraczynski.shoppinglist.fragments.AddItemFragment"
+        android:label="fragment_add_item"
+        tools:layout="@layout/fragment_add_item" >
+        <argument
+            android:name="item"
+            app:argType="pl.jraczynski.shoppinglist.data.Item"
+            app:nullable="true" />
     </fragment>
 
 </navigation>

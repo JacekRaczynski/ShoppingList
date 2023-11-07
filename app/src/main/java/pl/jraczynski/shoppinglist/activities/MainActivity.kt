@@ -4,31 +4,23 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
-import androidx.core.content.PermissionChecker
-import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.coroutines.flow.stateIn
-import android.Manifest
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationBarView
 import pl.jraczynski.shoppinglist.R
-import pl.jraczynski.shoppinglist.adapters.ProductAdapter
-import pl.jraczynski.shoppinglist.data.Categories
-import pl.jraczynski.shoppinglist.data.Item
 import pl.jraczynski.shoppinglist.databinding.ActivityMainBinding
 import pl.jraczynski.shoppinglist.fragments.*
 import pl.jraczynski.shoppinglist.viewModels.FoodViewModel
-import java.util.*
-import kotlin.collections.ArrayList
+import pl.jraczynski.shoppinglist.viewModels.UserViewModel
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var navHostFragment: NavHostFragment
     private lateinit var navController: NavController
-    private val foodViewModel by viewModels<FoodViewModel>()
+     val userViewModel by viewModels<UserViewModel>()
+     val foodViewModel by viewModels<FoodViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -40,7 +32,7 @@ class MainActivity : AppCompatActivity() {
 
         foodViewModel.performFetchSingleFoodProduct(id = 3017624010701)
         foodViewModel.getFoodProduct().observe(this) { it ->
-            Log.d("PROCESS_D", it.toString())
+            Log.d("PROCESS_Dddddddddddddddddddddddddddddddddddddddd", it.toString())
         }
 
 

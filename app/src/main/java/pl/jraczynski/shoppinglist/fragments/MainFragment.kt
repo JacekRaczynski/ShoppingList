@@ -7,25 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.CompoundButton
 import android.widget.LinearLayout
-import androidx.fragment.app.viewModels
-import androidx.navigation.NavController
-import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import pl.jraczynski.shoppinglist.R
+import pl.jraczynski.shoppinglist.activities.MainActivity
 import pl.jraczynski.shoppinglist.adapters.ProductAdapter
 import pl.jraczynski.shoppinglist.data.Item
 import pl.jraczynski.shoppinglist.databinding.FragmentMainBinding
-import pl.jraczynski.shoppinglist.viewModels.ProductViewModel
-import pl.jraczynski.shoppinglist.viewModels.UserViewModel
 
 
 class MainFragment : BaseFragment() {
     private lateinit var binding: FragmentMainBinding
-    private lateinit var navHostFragment: NavHostFragment
-    private lateinit var navController: NavController
-    private val productViewModel by viewModels<ProductViewModel>()
-    private val userViewModel by viewModels<UserViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -42,21 +34,24 @@ class MainFragment : BaseFragment() {
         return view
     }
 
+    override fun onResume() {
+        super.onResume()
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         var userItemList : List<Item> = listOf()
         var teamItemList : List<Item> = listOf()
-        userViewModel.user.observe(viewLifecycleOwner) { user ->
+        (activity as MainActivity).userViewModel.user.observe(viewLifecycleOwner) { user ->
             user.listofProducts?.list?.let {
                 userItemList = it
-                val adapter = ProductAdapter(it, binding.shoppingModeSwitch)
+                val adapter = ProductAdapter(it as ArrayList<Item>)
                 binding.privateProductListRecyclerView.layoutManager = LinearLayoutManager(context)
                 binding.privateProductListRecyclerView.adapter = adapter
                 setupShoppingMode(userItemList,teamItemList)
             }
             user.team?.listofProducts?.list?.let {
                 teamItemList = it
-                val adapter = ProductAdapter(it, binding.shoppingModeSwitch)
+                val adapter = ProductAdapter(it as ArrayList<Item>)
                 binding.teamProductListRecyclerView.layoutManager = LinearLayoutManager(context)
                 binding.teamProductListRecyclerView.adapter = adapter
                 setupShoppingMode(userItemList,teamItemList)
@@ -67,7 +62,7 @@ class MainFragment : BaseFragment() {
         setupShoppingMode(userItemList,teamItemList)
         setupAddProduct()
 
-        userViewModel.user.observe(viewLifecycleOwner) { user ->
+        (activity as MainActivity).userViewModel.user.observe(viewLifecycleOwner) { user ->
             Log.d("DDDDDDDDDDDDDDDDDDDDDD11111DDDDDD", user.toString())
        }
     }
